@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MyTestDb.mdf" Class="MyTestDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\.;Initial Catalog=MyTestDb.mdf;Persist Security Info=True;User ID=admin" SettingsObjectName="Linq2Sql.Properties.Settings" SettingsPropertyName="MyTestDb_mdfConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Books" Member="Books">
+    <Type Name="Books">
+      <Column Name="BookId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BookName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Author" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ToolTipText" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Categories_Books" Member="Categories" ThisKey="CategoryId" OtherKey="CategoryId" Type="Categories" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Categories" Member="Categories">
+    <Type Name="Categories">
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CategoryName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ToolTipText" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ParrentCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="store_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Categories_Books" Member="Books" ThisKey="CategoryId" OtherKey="CategoryId" Type="Books" />
+      <Association Name="Categories_Categories" Member="Categories2" ThisKey="CategoryId" OtherKey="ParrentCategoryId" Type="Categories" />
+      <Association Name="Categories_Categories" Member="Categories1" ThisKey="ParrentCategoryId" OtherKey="CategoryId" Type="Categories" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
